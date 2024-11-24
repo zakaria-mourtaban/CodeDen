@@ -12,6 +12,7 @@ use App\Http\Controllers\FileController;
 // })->middleware('auth:sanctum');
 
 
-// Route::get("/hello",[UserController::class, "hello_world"]);
+Route::get("/hello",[FileController::class, "hello_world"]);
+Route::post("/add",[UserController::class, "add_user"]);
 
 
