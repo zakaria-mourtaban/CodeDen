@@ -21,4 +21,18 @@ Route::prefix("/users")->group(function(){
     Route::post("/delete_user/{id}",[UserController::class, "delete_user"]);
 });
 
+// Files
+Route::prefix("/files")->group(function(){
+    // Route::get("/",[FileController::class, "get_files"]);
+    // Route::get("/{id}",[FileController::class, "get_file"]);
+    
+    Route::post("/",[FileController::class, "save_code_file"]);
+    Route::get("/",[FileController::class, "get_code_file"]);
+    Route::post("/delete_file",[FileController::class, "delete_code_file"]);
+    Route::put("/",[FileController::class, "update_code_file"]);
+    Route::get("/download_file",[FileController::class, "download_code_file"]);
+    
+    // Route::get("/{id}",[FileController::class, "get_file"]);
+});
+
 
