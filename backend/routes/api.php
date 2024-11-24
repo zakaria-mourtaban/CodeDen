@@ -12,7 +12,13 @@ use App\Http\Controllers\FileController;
 // })->middleware('auth:sanctum');
 
 
-Route::get("/hello",[FileController::class, "hello_world"]);
-Route::post("/add",[UserController::class, "add_user"]);
+// Users
+Route::prefix("/users")->group(function(){
+    Route::get("/",[UserController::class, "get_users"]);
+    Route::get("/{id}",[UserController::class, "get_user"]);
+    Route::post("/",[UserController::class, "add_user"]);
+    Route::put("/{id}",[UserController::class, "edit_user"]);
+    Route::post("/delete_user/{id}",[UserController::class, "delete_user"]);
+});
 
 
