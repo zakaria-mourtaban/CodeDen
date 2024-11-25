@@ -11,5 +11,6 @@ class File extends Model
         'language',
         'content',
         'user_id',
+        'workspace_id',
     ];
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class FileController extends Controller
@@ -13,12 +14,15 @@ class FileController extends Controller
     function save_code_file(Request $request){
         $request->validate([
             'file_name' => 'required|string|max:255',
+            'language' => 'required|string',
             'content' => 'required|string',
             'user_id' => 'required|integer',
+            'workspace_id' => 'required|string',
         ]);
-
-        $filePath = 'code-files/' . $request->user_id . '/' . $request->file_name;
-
+        
+        // $filePath = 'code-files/' . $request->user_id . '/' . $request->file_name;
+        $filePath = 'code-files/' . $request->user_id . '/' . $request->workspace_id . '/' . $request->file_name;
+        
         Storage::disk('local')->put($filePath, $request->content);
 
         $file = File::create([
@@ -26,12 +30,14 @@ class FileController extends Controller
             "language" => $request->language,
             "content" => $request->content,
             "user_id" => $request->user_id,
+            "workspace_id" => $request->workspace_id,
         ]);
 
         return response()->json([
             'message' => 'File saved successfully!',
             'path' => $filePath,
         ], 201);
+
     }
 
 
