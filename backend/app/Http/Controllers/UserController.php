@@ -29,8 +29,6 @@ class UserController extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "password" => $request->password,
-            'user_type' => $request->user_type,
-
         ]);
 
         return response()->json([
@@ -43,8 +41,6 @@ class UserController extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "password" => $request->password,
-            'user_type' => $request->user_type,
-
 
         ]);
         return response()->json([

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\WorkspaceController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -36,3 +37,8 @@ Route::prefix("/files")->group(function(){
 });
 
 
+// Workspaces
+Route::prefix("/workspaces")->group(function(){
+    Route::post("/",[WorkspaceController::class, "add_workspace"]);
+    Route::post("/delete_workspace/{id}",[WorkspaceController::class, "delete_workspace"]);
+});
