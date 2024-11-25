@@ -47,4 +47,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function workspacesAccess(){
+        return $this->hasMany(WorkspaceAccess::class);
+    }
+
+    public function accessibleWorkspaces(){
+        return $this->belongsToMany(Workspace::class, 'workspace_access')
+                    ->withPivot('access_type')
+                    ->withTimestamps();
+    }
+
+
 }
