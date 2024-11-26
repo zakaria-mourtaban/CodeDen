@@ -15,6 +15,9 @@ use App\Http\Middleware\JwtMiddleware;
 Route::post("/register", [JWTAuthController::class, "register"]);
 Route::post("/login", [JWTAuthController::class, "login"]);
 
+Route::get('/user', [JWTAuthController::class, 'getUser']);
+Route::post('/logout', [JWTAuthController::class, 'logout']);
+
 
 // Users
 Route::prefix("/users")->group(function(){
