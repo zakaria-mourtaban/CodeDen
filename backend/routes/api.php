@@ -8,10 +8,12 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorkspaceAccessController;
 
+use App\Http\Controllers\Auth\JWTAuthController;
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
+use App\Http\Middleware\JwtMiddleware;
+
+Route::post("/register", [JWTAuthController::class, "register"]);
+Route::post("/login", [JWTAuthController::class, "login"]);
 
 
 // Users
