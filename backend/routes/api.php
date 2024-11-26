@@ -16,7 +16,15 @@ use App\Http\Controllers\WorkspaceAccessController;
 
 // Users
 Route::prefix("/users")->group(function(){
+    // {
+    //     "name":"ahmadd",
+    //     "email":"ah@gmail.com",
+    //     "password":"123"
+    // }
     Route::get("/",[UserController::class, "get_users"]);
+
+    
+
     Route::get("/{id}",[UserController::class, "get_user"]);
     Route::post("/",[UserController::class, "add_user"]);
     Route::put("/{id}",[UserController::class, "edit_user"]);
