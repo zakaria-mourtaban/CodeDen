@@ -9,7 +9,7 @@ class WorkspaceAccess extends Model
 {
     use HasFactory;
 
-    protected $table = 'workspace_access';
+    protected $table = 'workspaces_access';
 
     protected $fillable = [
         'user_id',
