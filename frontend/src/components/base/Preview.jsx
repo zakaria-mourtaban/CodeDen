@@ -8,13 +8,30 @@ const Preview = ({ code }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSrcDoc(`
-        <html>
-          <body class=""><p style="color:white;">${code}</p></body>
-          <script>${code}</script>
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Preview</title>
+            <style>
+              body { background-color: black; color: white; margin: 0; padding: 20px; }
+            </style>
+          </head>
+          <body>
+            ${code}
+            <script>
+              try {
+                    ${code}
+              } catch (error) {
+                console.error('Runtime error in preview:', error);
+              }
+            </script>
+          </body>
         </html>
       `);
     }, 500);
-
+  
     return () => clearTimeout(timeout);
   }, [code]);
 

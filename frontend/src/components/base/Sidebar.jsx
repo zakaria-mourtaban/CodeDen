@@ -14,7 +14,6 @@ const Sidebar = () => (
 
         <h3>Workspaces</h3>
 
-
         <ul>
             <li>Workspace 1</li>
             <li>Workspace 2</li>
