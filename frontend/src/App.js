@@ -1,22 +1,22 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import useEcho from './echo';
 import './App.css';
 
 function App() {
+  const [message, setMessage] = useState(null);
+
+  // Use the custom hook to listen for events on the 'room' channel and 'UpdateCode' event
+  const receivedMessage = useEcho('room', 'UpdateCode');
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          WebSocket Connection Status: {receivedMessage ? 'Connected' : 'Disconnected'}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          {receivedMessage ? `Received message: ${receivedMessage}` : 'Waiting for message...'}
+        </p>
       </header>
     </div>
   );
