@@ -35,6 +35,7 @@ return [
             'options' => [
                 'tls' => [],
             ],
+			'enable_client_messages' => true,
             'max_request_size' => env('REVERB_MAX_REQUEST_SIZE', 10_000),
             'scaling' => [
                 'enabled' => env('REVERB_SCALING_ENABLED', false),
@@ -71,6 +72,7 @@ return [
 
         'apps' => [
             [
+				'enable_client_messages' => true,
                 'key' => env('REVERB_APP_KEY'),
                 'secret' => env('REVERB_APP_SECRET'),
                 'app_id' => env('REVERB_APP_ID'),
