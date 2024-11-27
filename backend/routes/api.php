@@ -9,7 +9,7 @@ use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\WorkspaceAccessController;
 
 use App\Http\Controllers\Auth\JWTAuthController;
-
+use App\Events\Example;
 use App\Http\Middleware\JwtMiddleware;
 
 Route::post("/register", [JWTAuthController::class, "register"]);
@@ -62,4 +62,8 @@ Route::prefix("/workspaces_access")->group(function(){
     Route::post("/",[WorkspaceAccessController::class, "grant_access"]);
     Route::put("/",[WorkspaceAccessController::class, "update_access"]);
     Route::get("/",[WorkspaceAccessController::class, "get_accessed_user"]);
+});
+
+Route::get('/broadcast', function () {
+    broadcast(new Example());
 });
