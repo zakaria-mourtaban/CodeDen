@@ -1,0 +1,7 @@
+.sidebar{
+    overflow: auto;
+    width: 400px;
+    background-color: #0E1525;
+    color: #fff;
+    height: calc(100vh - 63px);
+}
