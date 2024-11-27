@@ -1,3 +1,33 @@
+.login{
+    height: 100vh;
+}
+
+.login-container, .form-container{
+    width: 50%;
+}
+
+.login-container{
+    height: 100%;
+    background-image: url("../assets/images/login.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.login-container > h1{
+    font-size: 70px;
+    color: white;
+}
+
+.login-container > ul{
+    gap: 50px;
+    list-style-type: none;
+}
+.login-container > ul > li{
+    font-size: 20px;
+    color: white;
+    text-align: left;
+}
+
 .form-container {
   max-width: 400px;
   margin: 0 auto;

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { useState } from "react";
 import Register from './pages/Register';
 import Login from './pages/Login';
