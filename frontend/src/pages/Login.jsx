@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.css";
 import "../styles/base/utilities.css"
-import Input from "../components/base/Inpust";
+import Input from "../components/base/Input";
 import Button from "../components/base/Button";
 
 const Login = ({ switchToRegister }) => {
