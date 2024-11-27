@@ -3,9 +3,9 @@ import MonacoEditor from '@monaco-editor/react';
 import "./CodeEditor.css";
 
 const CodeEditor = ({ code, setCode }) => {
-  const handleEditorChange = (value) => {
-    setCode(value);
-  };
+    const handleEditorChange = (value) => {
+        setCode(value);
+      };
 
   return (
     <div className="editor">

@@ -7,15 +7,20 @@ import "./Workspace.css";
 
 const Workspace = () =>{
     const [code, setCode] = useState('');
+    const [runCode, setRunCode] = useState('');
+
+    const handleRunClick = () => {
+        setRunCode(code);
+    };
 
     return(
         <div className="">
-            <Navbar/>
+            <Navbar onClick={handleRunClick}/>
 
             <div className="workspace-body flex">
                 <Sidebar/>
                 <CodeEditor code={code} setCode={setCode} />
-                <Preview code={code} />
+                <Preview code={runCode} />
             </div>
         </div>
     )
