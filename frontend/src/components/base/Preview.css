@@ -1,4 +1,7 @@
 .preview {
-    border: 1px solid #ddd;
-    overflow: auto;
+    overflow: hidden;
+    background-color: #1C2333;
+    height: calc(100vh - 63px);
+    width: 1000px;
+    color: #fff;
 }

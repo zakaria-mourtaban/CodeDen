@@ -12,8 +12,8 @@ function App() {
 
   return (
     <div className="App">
-{/* 
-      {isLogin ? (
+
+      {/* {isLogin ? (
         <Login switchToRegister={() => setIsLogin(false)} />
       ) : (
         <Register switchToLogin={() => setIsLogin(true)} />

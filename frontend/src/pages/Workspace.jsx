@@ -3,7 +3,7 @@ import Navbar from "../components/base/Navbar";
 import Sidebar from "../components/base/Sidebar";
 import CodeEditor from "../components/base/CodeEditor";
 import Preview from "../components/base/Preview";
-
+import "./Workspace.css";
 
 const Workspace = () =>{
     return(

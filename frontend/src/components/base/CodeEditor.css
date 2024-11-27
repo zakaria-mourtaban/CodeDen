@@ -1,4 +1,10 @@
 .editor{
-    border: 1px solid #ddd;
-    overflow: auto;
+    /* border: 1px solid #1C2333; */
+    overflow: hidden;
+    width: 100%;
+    height: calc(100vh - 110px);
+    background-color: #1C2333;
+}
+.monaco-editor{
+    background-color: #1C2333;
 }

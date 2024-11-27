@@ -9,7 +9,7 @@ const Preview = ({ code }) => {
     const timeout = setTimeout(() => {
       setSrcDoc(`
         <html>
-          <body>${code}</body>
+          <body class=""><p style="color:white;">${code}</p></body>
           <script>${code}</script>
         </html>
       `);
