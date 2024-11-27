@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Room;
 use Illuminate\Http\Request;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Storage;
@@ -9,38 +10,56 @@ use Illuminate\Support\Str;
 
 class WorkspaceController extends Controller
 {
-    function add_workspace(Request $request){
-        $workspace = Workspace::create();
+	function open_workspace(Request $request, $id)
+	{
+		$workspace = Workspace::find($id);
 
-        $filePath = 'code-files/' . $workspace->id;
+		if (!$workspace) {
+			return response()->json([
+				"error" => "Workspace not found.",
+			], 404);
+		}
 
-        Storage::disk('local')->makeDirectory($filePath);
+		broadcast(new Room($id));
+		return response()->json(
+			["status" => "success"]
+		);
+	}
+
+	function add_workspace(Request $request)
+	{
+		$workspace = Workspace::create();
+
+		$filePath = 'code-files/' . $workspace->id;
+
+		Storage::disk('local')->makeDirectory($filePath);
 
 
-        return response()->json([
-            "New_workspace" => $workspace,
-            'path' => $filePath,
-        ]);
-    }
+		return response()->json([
+			"New_workspace" => $workspace,
+			'path' => $filePath,
+		]);
+	}
 
-    function delete_workspace($id){
-        $workspace = Workspace::find($id);
+	function delete_workspace($id)
+	{
+		$workspace = Workspace::find($id);
 
-        if (!$workspace) {
-            return response()->json([
-                "error" => "Workspace not found.",
-            ], 404);
-        }
+		if (!$workspace) {
+			return response()->json([
+				"error" => "Workspace not found.",
+			], 404);
+		}
 
-        $folderPath = 'code-files/' . $workspace->id;
+		$folderPath = 'code-files/' . $workspace->id;
 
-        Storage::disk('local')->deleteDirectory($folderPath);
+		Storage::disk('local')->deleteDirectory($folderPath);
 
-        $workspace->delete();
+		$workspace->delete();
 
-        return response()->json([
-            "message" => "Workspace deleted successfully.",
-            "Deleted_workspace" => $workspace,
-        ]);
-    }
+		return response()->json([
+			"message" => "Workspace deleted successfully.",
+			"Deleted_workspace" => $workspace,
+		]);
+	}
 }

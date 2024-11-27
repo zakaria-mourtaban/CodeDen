@@ -52,7 +52,8 @@ Route::prefix("/files")->group(function(){
 
 
 // Workspaces
-Route::prefix("/workspaces")->group(function(){
+Route::prefix("/workspaces")->group(function () {
+	Route::get("/openworkspace/{id}", [WorkspaceController::class, "open_workspace"]);
     Route::post("/",[WorkspaceController::class, "add_workspace"]);
     Route::post("/delete_workspace/{id}",[WorkspaceController::class, "delete_workspace"]);
 });
@@ -62,8 +63,4 @@ Route::prefix("/workspaces_access")->group(function(){
     Route::post("/",[WorkspaceAccessController::class, "grant_access"]);
     Route::put("/",[WorkspaceAccessController::class, "update_access"]);
     Route::get("/",[WorkspaceAccessController::class, "get_accessed_user"]);
-});
-
-Route::get('/broadcast', function () {
-    broadcast(new Example());
 });

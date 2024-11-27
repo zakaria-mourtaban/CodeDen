@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Broadcast;
 
-Broadcast::channel('chat', function () {
+Broadcast::channel('room.{$room_id}', function () {
 	return true;
 });
