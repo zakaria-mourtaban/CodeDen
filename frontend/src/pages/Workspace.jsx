@@ -35,7 +35,7 @@ const Workspace = () => {
 
             const data = await response.json();
             setChatResponse(data.choices[0]?.message?.content || 'No response from the API.');
-		} catch (error) {
+        } catch (error) {
             setChatResponse(`Error fetching response: ${error.message}`);
         } finally {
             setIsLoading(false);
@@ -45,6 +45,35 @@ const Workspace = () => {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+
+    // Function to format response text
+    const formatResponse = (text) => {
+		// Split the response into lines
+		const lines = text.split("\n");
+		return lines.map((line, index) => {
+			// Check for bold markers (e.g., **text**)
+			const boldRegex = /\*\*(.*?)\*\*/g;
+			const formattedLine = line.replace(boldRegex, (_, boldText) => `<b>${boldText}</b>`);
+	
+			// Detect and render code blocks
+			if (line.startsWith("```")) {
+				return (
+					<pre key={index} className="formatted-code">
+						{line.replace(/```/g, "")}
+					</pre>
+				);
+			}
+	
+			// Render formatted lines with bold text
+			return (
+				<p
+					key={index}
+					dangerouslySetInnerHTML={{ __html: formattedLine }}
+				></p>
+			);
+		});
+	};
+	
 
     return (
         <div className="">
@@ -64,9 +93,8 @@ const Workspace = () => {
                         {isLoading ? (
                             <p>Loading...</p>
                         ) : (
-                            <div>
-                                <h3>ChatGPT Response:</h3>
-                                <p>{chatResponse}</p>
+                            <div className="formatted-response">
+                                {formatResponse(chatResponse)}
                             </div>
                         )}
                     </div>
