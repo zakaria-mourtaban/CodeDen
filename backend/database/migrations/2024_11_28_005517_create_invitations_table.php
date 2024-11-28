@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('receiver_id');
+            $table->unsignedBigInteger('file_id');
+            $table->enum('permission', ['view', 'edit']);
+            $table->string('status')->default('pending');
             $table->timestamps();
+
         });
     }
 
