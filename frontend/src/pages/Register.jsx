@@ -49,6 +49,8 @@ const Register = ({ switchToLogin }) => {
         }
       };
 
+      console.log(message);
+
   return (
 
     <div className="register flex center">

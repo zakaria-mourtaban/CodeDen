@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Workspace from "./pages/Workspace";
 import { EchoProvider } from "./context/echo";
 function App() {
@@ -10,6 +10,11 @@ function App() {
 
 	return (
 		<div className="App">
+									{isLogin ? (
+              <Login switchToRegister={() => setIsLogin(false)} />
+            ) : (
+              <Register switchToLogin={() => setIsLogin(true)} />
+            )}
 			<EchoProvider>
 				<Router>
 					<Routes>
@@ -17,11 +22,6 @@ function App() {
 							path="/workspace"
 							element={<Workspace />}
 						></Route>
-						{/* {isLogin ? (
-              <Login switchToRegister={() => setIsLogin(false)} />
-            ) : (
-              <Register switchToLogin={() => setIsLogin(true)} />
-            )} */}
 					</Routes>
 				</Router>
 			</EchoProvider>
