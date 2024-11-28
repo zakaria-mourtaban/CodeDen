@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->timestamps();
 
+            $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('receiver_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
+
         });
     }
 
