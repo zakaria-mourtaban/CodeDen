@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\JWTAuthController;
 use App\Events\Example;
 use App\Http\Middleware\JwtMiddleware;
 
+use App\Http\Controllers\CollaborationController;
+
 Route::post("/register", [JWTAuthController::class, "register"]);
 Route::post("/login", [JWTAuthController::class, "login"]);
 
@@ -66,6 +68,10 @@ Route::middleware([JwtMiddleware::class])->prefix("/workspaces_access")->group(f
 	Route::get("/", [WorkspaceAccessController::class, "get_accessed_user"]);
 });
 
+Route::middleware([JwtMiddleware::class])->prefix("/invite")->group(function () {
+    Route::post('/collaborations', [CollaborationController::class, 'store']);
+    Route::get('/collaborations', [CollaborationController::class, 'index']);
+});
 
 Route::post('/chat', [OpenAIController::class, 'chat']);
 

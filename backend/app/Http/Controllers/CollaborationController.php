@@ -33,6 +33,10 @@ class CollaborationController extends Controller{
 
         return response()->json(['message' => 'Invitation sent!', 'collaboration' => $collaboration], 201);
     }
-
+    public function index()
+    {
+        $collaborations = Collaboration::where('receiver_id', Auth::id())->get();
+        return response()->json($collaborations);
+    }
     
 }
