@@ -3,8 +3,13 @@ import "./Login.css";
 import "../styles/base/utilities.css"
 import Input from "../components/base/Input";
 import Button from "../components/base/Button";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = ({ switchToRegister }) => {
+
+    const navigate = useNavigate();
+
 
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [message, setMessage] = useState("");
@@ -35,6 +40,8 @@ const Login = ({ switchToRegister }) => {
         localStorage.setItem("userId", data.user.id);
   
         setMessage(`Welcome back, ${data.user.name}!`);
+
+        navigate("/Workspace");
       } catch (error) {
         console.error("Error:", error);
         setMessage("Login failed. Please check your credentials and try again.");

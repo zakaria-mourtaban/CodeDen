@@ -10,17 +10,23 @@ function App() {
 
 	return (
 		<div className="App">
-									{isLogin ? (
-              <Login switchToRegister={() => setIsLogin(false)} />
-            ) : (
-              <Register switchToLogin={() => setIsLogin(true)} />
-            )}
+
 			<EchoProvider>
 				<Router>
 					<Routes>
 						<Route
 							path="/workspace"
 							element={<Workspace />}
+						></Route>
+						<Route
+							path="/"
+							element={isLogin ? (
+								<Login switchToRegister={() => setIsLogin(false)} />
+							  ) : (
+								<Register switchToLogin={() => setIsLogin(true)} />
+							  )}
+							
+
 						></Route>
 					</Routes>
 				</Router>
