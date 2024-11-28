@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('invitations', function (Blueprint $table) {
+            $table->dropColumn(['receiver_id']);
+            $table->dropColumn(['status']);
+            $table->string('receiver_email')->nullable();
+        });
     }
 
     /**
