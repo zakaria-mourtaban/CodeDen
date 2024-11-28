@@ -25,7 +25,13 @@ class CollaborationController extends Controller{
             'permission' => $request->permission,
         ]);
 
-       
+        // Send email notification
+        Mail::raw("You have been invited to collaborate with {$request->permission} permission", function ($message) use ($request) {
+            $message->to($request->email)
+                    ->subject('Collaboration Invitation');
+        });
+
+        return response()->json(['message' => 'Invitation sent!', 'collaboration' => $collaboration], 201);
     }
 
     
