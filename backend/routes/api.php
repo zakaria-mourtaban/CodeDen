@@ -60,6 +60,7 @@ Route::middleware([JwtMiddleware::class])->prefix("/workspaces")->group(function
 	Route::post("/", [WorkspaceController::class, "add_workspace"]);
 	Route::post("/delete_workspace/{id}", [WorkspaceController::class, "delete_workspace"]);
 });
+Route::post('/chat', [OpenAIController::class, 'chat']);
 
 // Workspaces Access
 Route::middleware([JwtMiddleware::class])->prefix("/workspaces_access")->group(function () {
@@ -73,5 +74,4 @@ Route::middleware([JwtMiddleware::class])->prefix("/invite")->group(function () 
     Route::get('/collaborations', [CollaborationController::class, 'index']);
 });
 
-Route::post('/chat', [OpenAIController::class, 'chat']);
 

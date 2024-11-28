@@ -14,6 +14,9 @@ return [
     |
     */
 
+	'openai' => [
+        'secret' => "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",
+    ],
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

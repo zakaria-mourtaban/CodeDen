@@ -6,9 +6,6 @@ import pusher from "pusher-js";
 
 window.Pusher = pusher;
 const CodeEditor = ({ code, setCode }) => {
-	const handleEditorChange = (value) => {
-		setCode(value);
-	};
 	// const echo = new Echo({
 	// 	broadcaster: "reverb",
 	// 	key: "qs7zsgqt1db6znsbfxht", // Replace with your actual Reverb key
@@ -34,9 +31,8 @@ const CodeEditor = ({ code, setCode }) => {
 				defaultLanguage="javascript"
 				value={code}
 				onChange={(e) => {
-					handleEditorChange();
+					setCode(e);
 					// channel.whisper("typing", { data: e });
-					// console.log(e);
 				}}
 			/>
 		</div>
