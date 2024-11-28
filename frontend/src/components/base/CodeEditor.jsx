@@ -3,47 +3,44 @@ import MonacoEditor from "@monaco-editor/react";
 import "./CodeEditor.css";
 import Echo from "laravel-echo";
 import pusher from "pusher-js";
-import { useEcho } from "../../context/echo";
 
 window.Pusher = pusher;
 const CodeEditor = ({ code, setCode }) => {
-	const echo = useEcho(); // Get Echo instance from context
-	const [channel, setChannel] = useState(null);
-  
-	useEffect(() => {
-	  if (echo) {
-		const newChannel = echo.private("room");
-  
-		newChannel.listenForWhisper("typing", (event) => {
-		  console.log("Something:", event);
-		});
-	  }
-	}, [echo]);
-  
 	const handleEditorChange = (value) => {
-	  setCode(value);
+		setCode(value);
 	};
-  
-	const handleTyping = (e) => {
-	  if (channel) {
-		channel.whisper("typing", { data: e });
-	  }
-	  console.log(e);
-	};
-  
+	// const echo = new Echo({
+	// 	broadcaster: "reverb",
+	// 	key: "qs7zsgqt1db6znsbfxht", // Replace with your actual Reverb key
+	// 	wsHost: "localhost", // Replace with your WebSocket server host
+	// 	wsPort: "8080", // Replace with your WebSocket server port
+	// 	forceTLS: false,
+	// 	encrypted: false,
+	// 	enabledTransports: ["ws", "wss"],
+	// 	disableStats: true,
+	// 	authEndpoint: "http://localhost:8000/broadcasting/auth",
+	// });
+	// const channel = echo.private("room");
+	
+	useEffect(() => {
+		// channel.listenForWhisper("typing", (event) => {
+		// 	console.log("something: ", event);
+		// });
+	}, []);
 	return (
-	  <div className="editor">
-		<MonacoEditor
-		  height="100vh"
-		  defaultLanguage="javascript"
-		  value={code}
-		  onChange={(e) => {
-			handleEditorChange(e);
-			handleTyping(e);
-		  }}
-		/>
-	  </div>
+		<div className="editor">
+			<MonacoEditor
+				height="100vh"
+				defaultLanguage="javascript"
+				value={code}
+				onChange={(e) => {
+					handleEditorChange();
+					// channel.whisper("typing", { data: e });
+					// console.log(e);
+				}}
+			/>
+		</div>
 	);
-  };
-  
-  export default CodeEditor;
+};
+
+export default CodeEditor;

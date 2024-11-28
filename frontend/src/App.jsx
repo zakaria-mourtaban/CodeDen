@@ -10,7 +10,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<EchoProvider>
+			{/* <EchoProvider> */}
 				<Router>
 					<Routes>
 						<Route
@@ -24,7 +24,7 @@ function App() {
             )} */}
 					</Routes>
 				</Router>
-			</EchoProvider>
+			{/* </EchoProvider> */}
 		</div>
 	);
 }

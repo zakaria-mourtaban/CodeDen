@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\OpenAIController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -64,3 +65,7 @@ Route::middleware([JwtMiddleware::class])->prefix("/workspaces_access")->group(f
 	Route::put("/", [WorkspaceAccessController::class, "update_access"]);
 	Route::get("/", [WorkspaceAccessController::class, "get_accessed_user"]);
 });
+
+
+Route::post('/chat', [OpenAIController::class, 'chat']);
+
