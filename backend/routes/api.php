@@ -69,7 +69,7 @@ Route::middleware([JwtMiddleware::class])->prefix("/workspaces_access")->group(f
 	Route::get("/", [WorkspaceAccessController::class, "get_accessed_user"]);
 });
 
-Route::middleware([JwtMiddleware::class])->prefix("/invite")->group(function () {
+Route::middleware([JwtMiddleware::class])->group(function () {
     Route::post('/collaborations', [CollaborationController::class, 'store']);
     Route::get('/collaborations', [CollaborationController::class, 'index']);
 });
