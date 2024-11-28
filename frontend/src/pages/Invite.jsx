@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./Invite.css";
+import "../styles/base/utilities.css"
+import Input from "../components/base/Input";
+import Button from "../components/base/Button";
+
+
 
 const InviteForm = () => {
     const [email, setEmail] = useState('');
@@ -22,25 +28,38 @@ const InviteForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Email:</label>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+        <div className="invite flex center">
+            <div className="invite-container flex column center">
+                <h1>Build software, better.</h1>
+                <ul className="flex column">
+                    <li>Compile code with simple and interactive UI</li>
+                    <li>Analyze code using AI</li>
+                    <li>Collaborate with others</li>
+                </ul>
             </div>
-            <div>
-                <label>Permission:</label>
-                <select value={permission} onChange={(e) => setPermission(e.target.value)}>
-                    <option value="view">View</option>
-                    <option value="edit">Edit</option>
-                </select>
+            <div className="form-container">
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <Input
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Permission:</label>
+                        <select value={permission} onChange={(e) => setPermission(e.target.value)}>
+                            <option value="view">View</option>
+                            <option value="edit">Edit</option>
+                        </select>
+                    </div>
+                    <Button type="submit">Login</Button>
+                </form>
             </div>
-            <button type="submit">Send Invitation</button>
-        </form>
+        </div>
     );
 };
 
